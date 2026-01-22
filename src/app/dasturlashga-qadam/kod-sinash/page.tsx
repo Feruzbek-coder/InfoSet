@@ -674,11 +674,6 @@ export default function KodSinashPage() {
                   Hisobingiz yo&apos;qmi? Ro&apos;yxatdan o&apos;ting
                 </button>
               </div>
-              <div className="mt-6 p-4 bg-blue-50 rounded-lg">
-                <p className="text-sm text-gray-700 mb-2"><strong>Demo hisoblar:</strong></p>
-                <p className="text-xs text-gray-600">Username: <span className="font-mono">demo</span> / Parol: <span className="font-mono">demo123</span> (Oddiy)</p>
-                <p className="text-xs text-gray-600 mt-1">Username: <span className="font-mono">premium</span> / Parol: <span className="font-mono">premium123</span> (Premium ✨)</p>
-              </div>
             </>
           )}
           <Link href="/dasturlashga-qadam" className="block text-center mt-4 text-emerald-600 hover:text-emerald-700">
