@@ -65,9 +65,9 @@ export default async function Home() {
 
         {/* Content Layout - O'rtada: Oxirgi Maqola, O'ng: Featured */}
         <div className="max-w-[1800px] mx-auto px-4 relative">
-          <div className="grid grid-cols-12 gap-6">
+          <div className="flex flex-col lg:grid lg:grid-cols-12 gap-6">
             {/* O'rtada - Oxirgi Maqola */}
-            <div className="col-span-7 col-start-3">
+            <div className="w-full lg:col-span-7 lg:col-start-3">
               <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">Oxirgi Maqolalar</h3>
               {latestArticles.slice(0, 1).map((article: any) => (
                 <div key={article.id} className="bg-white rounded-2xl shadow-xl p-8 border border-gray-200 hover:shadow-2xl transition-all">
@@ -104,7 +104,7 @@ export default async function Home() {
             </div>
 
             {/* O'ng chet - Featured Maqola */}
-            <div className="col-span-3 col-start-10">
+            <div className="w-full lg:col-span-3 lg:col-start-10 order-first lg:order-none">
               {featuredArticle ? (
                 <div className="bg-gradient-to-br from-yellow-50 to-orange-50 rounded-2xl shadow-xl p-8 border-2 border-yellow-300 hover:shadow-2xl transition-all sticky top-4">
                   <div className="flex items-center gap-2 mb-4">
@@ -160,7 +160,7 @@ export default async function Home() {
             </div>
 
             {/* Qolgan oxirgi maqolalar - grid ichida, birinchi maqola kengligi */}
-            <div className="col-span-7 col-start-3 mt-8">
+            <div className="w-full lg:col-span-7 lg:col-start-3 mt-8">
               <div className="space-y-8">
                 {latestArticles.slice(1, 5).map((article: any) => (
                   <div key={article.id} className="bg-white rounded-2xl shadow-xl p-8 border border-gray-200 hover:shadow-2xl transition-all">
