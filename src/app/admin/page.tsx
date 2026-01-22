@@ -24,6 +24,7 @@ export default function AdminPage() {
   const [editingId, setEditingId] = useState<number | null>(null)
   const [uploading, setUploading] = useState(false)
   const [featuredArticleId, setFeaturedArticleId] = useState<number | null>(null)
+  const [pinnedArticles, setPinnedArticles] = useState<any[]>([])
   const [formData, setFormData] = useState({
     title: '',
     content: '',
@@ -38,6 +39,7 @@ export default function AdminPage() {
     loadLearningArticles()
     loadFeatured()
     loadUsers()
+    loadPinned()
     localStorage.setItem('adminMode', 'true')
   }, [])
 
@@ -139,6 +141,38 @@ export default function AdminPage() {
     } catch (error) {
       console.error('Featured maqolani yuklashda xato:', error)
     }
+  }
+
+  const loadPinned = async () => {
+    try {
+      const response = await fetch('/api/pinned')
+      const data = await response.json()
+      setPinnedArticles(data)
+    } catch (error) {
+      console.error('Pinned maqolalarni yuklashda xato:', error)
+    }
+  }
+
+  const togglePinArticle = async (articleId: number, source: string) => {
+    try {
+      const response = await fetch('/api/pinned', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ articleId, source })
+      })
+      const result = await response.json()
+      if (result.success) {
+        setPinnedArticles(result.pinned)
+        alert(isPinned(articleId, source) ? 'Maqola pindan olib tashlandi!' : 'Maqola pinlandi!')
+      }
+    } catch (error) {
+      console.error('Pin xatosi:', error)
+      alert('Xatolik yuz berdi!')
+    }
+  }
+
+  const isPinned = (articleId: number, source: string) => {
+    return pinnedArticles.some((p: any) => p.articleId === articleId && p.source === source)
   }
 
   const setFeaturedArticle = async (articleId: number) => {
@@ -616,6 +650,30 @@ export default function AdminPage() {
                         </span>
                       ) : (
                         'Tanlangan qilish'
+                      )}
+                    </button>
+                    <button
+                      onClick={() => togglePinArticle(article.id, article.source || 'maqolalar')}
+                      className={`px-4 py-2 rounded-md text-sm font-semibold transition ${
+                        isPinned(article.id, article.source || 'maqolalar')
+                          ? 'bg-green-500 text-white'
+                          : 'bg-green-100 text-green-800 hover:bg-green-200'
+                      }`}
+                    >
+                      {isPinned(article.id, article.source || 'maqolalar') ? (
+                        <span className="flex items-center gap-1">
+                          <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd"/>
+                          </svg>
+                          Pinlangan
+                        </span>
+                      ) : (
+                        <span className="flex items-center gap-1">
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"/>
+                          </svg>
+                          Pinlash
+                        </span>
                       )}
                     </button>
                   </div>

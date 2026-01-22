@@ -1,4 +1,6 @@
 import HomeHeader from './components/HomeHeader'
+import InfoBar from './components/InfoBar'
+import Footer from './components/Footer'
 import { promises as fs } from 'fs'
 import path from 'path'
 
@@ -22,6 +24,15 @@ export default async function Home() {
   const featuredData = await fs.readFile(path.join(dataDir, 'featured.json'), 'utf-8');
   const featured = JSON.parse(featuredData);
   
+  // Pinned maqolalarni olish
+  let pinnedArticles: any[] = [];
+  try {
+    const pinnedData = await fs.readFile(path.join(dataDir, 'pinned.json'), 'utf-8');
+    pinnedArticles = JSON.parse(pinnedData);
+  } catch {
+    pinnedArticles = [];
+  }
+  
   // Barcha maqolalarni birlashtirish va bo'lim qo'shish
   const allArticles = [
     ...articles.map((a: any) => ({ ...a, source: 'maqolalar', sourceUrl: '/maqolalar' })),
@@ -31,29 +42,40 @@ export default async function Home() {
     ...teachersArticles.map((a: any) => ({ ...a, source: 'oqituvchilar', sourceUrl: '/oqituvchilar' }))
   ];
   
-  // Maqolalarni sana va ID bo'yicha tartiblash (eng yangisi birinchi)
-  const sortedArticles = allArticles.sort((a: any, b: any) => {
-    // Avval sanani solishtirish
+  // Pinned maqolalarni topish
+  const pinnedArticlesList = pinnedArticles.map((p: any) => {
+    const article = allArticles.find((a: any) => a.id === p.articleId && a.source === p.source);
+    return article ? { ...article, isPinned: true } : null;
+  }).filter(Boolean);
+  
+  // Pinned bo'lmagan maqolalarni sana va ID bo'yicha tartiblash
+  const nonPinnedArticles = allArticles.filter((a: any) => 
+    !pinnedArticles.some((p: any) => p.articleId === a.id && p.source === a.source)
+  );
+  
+  const sortedArticles = nonPinnedArticles.sort((a: any, b: any) => {
     const dateCompare = new Date(b.date).getTime() - new Date(a.date).getTime();
     if (dateCompare !== 0) return dateCompare;
-    // Sana bir xil bo'lsa, ID bo'yicha tartiblash
     return b.id - a.id;
   });
   
-  const latestArticles = sortedArticles.slice(0, 5); // Eng oxirgi 5 ta maqola
+  // Pinned maqolalar birinchi, keyin so'nggilari
+  const latestArticles = [...pinnedArticlesList, ...sortedArticles].slice(0, 6);
 
   let featuredArticle = null;
   if (featured.articleId) {
-    // Featured maqolani topish
     featuredArticle = allArticles.find((a: any) => 
       a.id === featured.articleId && a.source === featured.source
     );
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 flex flex-col">
       {/* Header */}
       <HomeHeader />
+      
+      {/* Info Bar - Yuqorida */}
+      <InfoBar />
 
       {/* Hero Section */}
       <main className="flex-1 py-12">
@@ -70,7 +92,16 @@ export default async function Home() {
             <div className="w-full lg:col-span-7 lg:col-start-3">
               <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">Oxirgi Maqolalar</h3>
               {latestArticles.slice(0, 1).map((article: any) => (
-                <div key={article.id} className="bg-white rounded-2xl shadow-xl p-8 border border-gray-200 hover:shadow-2xl transition-all">
+                <div key={article.id} className="bg-white rounded-2xl shadow-xl p-8 border border-gray-200 hover:shadow-2xl transition-all relative">
+                  {/* Pinned belgisi */}
+                  {article.isPinned && (
+                    <div className="absolute top-4 right-4 flex items-center gap-1 bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-semibold">
+                      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M5.5 16a3.5 3.5 0 01-.369-6.98 4 4 0 117.753-1.977A4.5 4.5 0 1113.5 16h-8z"/>
+                      </svg>
+                      Muhim
+                    </div>
+                  )}
                   <div className="flex items-center gap-3 mb-4">
                     <span className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-medium">
                       {article.category}
@@ -199,6 +230,9 @@ export default async function Home() {
           </div>
         </div>
       </main>
+      
+      {/* Footer */}
+      <Footer />
     </div>
   )
 }
