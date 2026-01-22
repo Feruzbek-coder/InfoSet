@@ -5,6 +5,10 @@ import pool from '@/lib/db'
 import { promises as fs } from 'fs'
 import path from 'path'
 
+// Sahifani har doim yangi ma'lumot bilan render qilish
+export const dynamic = 'force-dynamic'
+export const revalidate = 0
+
 // Database mavjudligini tekshirish
 async function isDatabaseAvailable() {
   if (!process.env.DATABASE_URL) return false
@@ -207,6 +211,13 @@ export default async function Home() {
 
             {/* O'ng chet - Featured Maqola */}
             <div className="w-full lg:col-span-3 lg:col-start-10 order-first lg:order-none">
+              {/* Debug info - keyinroq o'chiramiz */}
+              <div className="bg-gray-100 p-2 mb-2 text-xs rounded hidden">
+                <p>Featured ID: {featured.articleId}</p>
+                <p>Source: {featured.source}</p>
+                <p>Found: {featuredArticle ? 'Yes' : 'No'}</p>
+                <p>All articles: {allArticles.length}</p>
+              </div>
               {featuredArticle ? (
                 <div className="bg-gradient-to-br from-yellow-50 to-orange-50 rounded-2xl shadow-xl p-8 border-2 border-yellow-300 hover:shadow-2xl transition-all sticky top-4">
                   <div className="flex items-center gap-2 mb-4">
