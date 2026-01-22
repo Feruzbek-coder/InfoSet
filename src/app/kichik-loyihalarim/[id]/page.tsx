@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import ReactMarkdown from 'react-markdown'
 
 export default async function ProjectDetailPage({ params }: { params: { id: string } }) {
   const res = await fetch(`http://localhost:3000/api/mini-projects?t=${Date.now()}`, { 
@@ -66,7 +65,9 @@ export default async function ProjectDetailPage({ params }: { params: { id: stri
           </h1>
 
           <div className="prose prose-lg max-w-none">
-            <ReactMarkdown>{project.content}</ReactMarkdown>
+            <div className="text-gray-800 leading-relaxed whitespace-pre-wrap">
+              {project.content}
+            </div>
           </div>
 
           <div className="mt-12 pt-8 border-t border-gray-200">
