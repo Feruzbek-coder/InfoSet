@@ -7,6 +7,7 @@ export default function HomeHeader() {
   const router = useRouter()
   const [user, setUser] = useState<any>(null)
   const [showUserMenu, setShowUserMenu] = useState(false)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   useEffect(() => {
     const savedUser = localStorage.getItem('currentUser')
@@ -37,16 +38,32 @@ export default function HomeHeader() {
   return (
     <header className="bg-white/80 backdrop-blur border-b border-gray-200 shadow-sm sticky top-0 z-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center gap-8 py-6">
-          <a href="/" className="flex items-center gap-2 hover:opacity-80 transition mr-4">
+        <div className="flex items-center justify-between py-4">
+          <a href="/" className="flex items-center gap-2 hover:opacity-80 transition">
             <svg className="w-8 h-8 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
               <path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/>
             </svg>
-            <h1 className="text-2xl font-extrabold text-gray-900 tracking-tight drop-shadow-sm">
+            <h1 className="text-xl sm:text-2xl font-extrabold text-gray-900 tracking-tight">
               InfoSet.uz
             </h1>
           </a>
-          <nav className="flex items-center space-x-2 flex-1">
+          
+          {/* Mobile menu button */}
+          <button 
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="lg:hidden p-2 rounded-lg bg-gray-100 hover:bg-gray-200 transition"
+          >
+            <svg className="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              {mobileMenuOpen ? (
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+              ) : (
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
+              )}
+            </svg>
+          </button>
+          
+          {/* Desktop Nav */}
+          <nav className="hidden lg:flex items-center space-x-2">
             <a 
               href="/dasturlashga-qadam" 
               className="flex items-center gap-2 bg-gradient-to-r from-emerald-600 to-lime-600 text-white px-3 py-2 rounded-lg shadow-md hover:shadow-lg hover:scale-105 transition-all font-medium whitespace-nowrap"
@@ -184,6 +201,58 @@ export default function HomeHeader() {
             )}
           </nav>
         </div>
+        
+        {/* Mobile Menu */}
+        {mobileMenuOpen && (
+          <div className="lg:hidden py-4 border-t border-gray-200">
+            <nav className="flex flex-col space-y-2">
+              <a href="/dasturlashga-qadam" className="flex items-center gap-2 bg-gradient-to-r from-emerald-600 to-lime-600 text-white px-3 py-2 rounded-lg font-medium">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                </svg>
+                Dasturlashga qadam
+              </a>
+              <a href="/" className="flex items-center gap-2 bg-gradient-to-r from-blue-600 to-cyan-600 text-white px-3 py-2 rounded-lg font-medium">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+                </svg>
+                Bosh sahifa
+              </a>
+              <a href="/maqolalar" className="flex items-center gap-2 bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-3 py-2 rounded-lg font-medium">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                </svg>
+                Maqolalar
+              </a>
+              <a href="/kompyuter-dasturlash" className="flex items-center gap-2 bg-gradient-to-r from-green-600 to-teal-600 text-white px-3 py-2 rounded-lg font-medium">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+                </svg>
+                Kompyuter va Dasturlash
+              </a>
+              {user ? (
+                <>
+                  <div className="flex items-center gap-2 px-3 py-2 bg-gray-100 rounded-lg">
+                    <span className="font-medium text-gray-900">{user.name}</span>
+                    {user.isPremium && <span className="text-xs bg-yellow-400 text-white px-2 py-0.5 rounded-full">Premium</span>}
+                  </div>
+                  <button onClick={handleLogout} className="flex items-center gap-2 bg-red-500 text-white px-3 py-2 rounded-lg font-medium">
+                    Chiqish
+                  </button>
+                </>
+              ) : (
+                <a href="/dasturlashga-qadam/kod-sinash" className="flex items-center gap-2 bg-gradient-to-r from-sky-600 to-blue-600 text-white px-3 py-2 rounded-lg font-medium">
+                  Kirish
+                </a>
+              )}
+              {user?.isAdmin && (
+                <a href="/admin" className="flex items-center gap-2 bg-gradient-to-r from-orange-600 to-red-600 text-white px-3 py-2 rounded-lg font-medium">
+                  Admin
+                </a>
+              )}
+            </nav>
+          </div>
+        )}
       </div>
     </header>
   )
