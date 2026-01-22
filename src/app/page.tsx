@@ -94,15 +94,22 @@ export default async function Home() {
     ...teachersArticles.map((a: any) => ({ ...a, source: 'oqituvchilar', sourceUrl: '/oqituvchilar' }))
   ];
   
-  // Pinned maqolalarni topish
+  // Debug log
+  console.log('All articles count:', allArticles.length)
+  console.log('Pinned articles:', pinnedArticles)
+  console.log('Featured:', featured)
+  
+  // Pinned maqolalarni topish (id ni number ga o'girish)
   const pinnedArticlesList = pinnedArticles.map((p: any) => {
-    const article = allArticles.find((a: any) => a.id === p.articleId && a.source === p.source);
+    const articleId = Number(p.articleId)
+    const article = allArticles.find((a: any) => Number(a.id) === articleId && a.source === p.source);
+    console.log('Looking for pinned:', articleId, p.source, 'Found:', !!article)
     return article ? { ...article, isPinned: true } : null;
   }).filter(Boolean);
   
   // Pinned bo'lmagan maqolalarni sana va ID bo'yicha tartiblash
   const nonPinnedArticles = allArticles.filter((a: any) => 
-    !pinnedArticles.some((p: any) => p.articleId === a.id && p.source === a.source)
+    !pinnedArticles.some((p: any) => Number(p.articleId) === Number(a.id) && p.source === a.source)
   );
   
   const sortedArticles = nonPinnedArticles.sort((a: any, b: any) => {
@@ -117,8 +124,9 @@ export default async function Home() {
   let featuredArticle = null;
   if (featured.articleId) {
     featuredArticle = allArticles.find((a: any) => 
-      a.id === featured.articleId && a.source === featured.source
+      Number(a.id) === Number(featured.articleId) && a.source === featured.source
     );
+    console.log('Looking for featured:', featured.articleId, featured.source, 'Found:', !!featuredArticle)
   }
 
   return (

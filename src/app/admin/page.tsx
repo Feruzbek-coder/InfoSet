@@ -175,12 +175,12 @@ export default function AdminPage() {
     return pinnedArticles.some((p: any) => p.articleId === articleId && p.source === source)
   }
 
-  const setFeaturedArticle = async (articleId: number) => {
+  const setFeaturedArticle = async (articleId: number, source: string = 'maqolalar') => {
     try {
       await fetch('/api/featured', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ articleId, source: 'maqolalar' })
+        body: JSON.stringify({ articleId, source })
       })
       setFeaturedArticleId(articleId)
       alert('Tanlangan maqola o\'rnatildi!')
@@ -633,7 +633,7 @@ export default function AdminPage() {
                       </button>
                     </div>
                     <button
-                      onClick={() => setFeaturedArticle(article.id)}
+                      onClick={() => setFeaturedArticle(article.id, article.source || 'maqolalar')}
                       className={`px-4 py-2 rounded-md text-sm font-semibold transition ${
                         featuredArticleId === article.id
                           ? 'bg-yellow-500 text-white cursor-default'
