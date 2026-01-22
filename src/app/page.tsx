@@ -97,9 +97,17 @@ export default async function Home() {
   // Pinned maqolalarni topish (id ni number ga o'girish)
   const pinnedArticlesList = pinnedArticles.map((p: any) => {
     const articleId = Number(p.articleId)
-    const article = allArticles.find((a: any) => Number(a.id) === articleId && a.source === p.source);
+    // Avval source bo'yicha qidirish
+    let article = allArticles.find((a: any) => Number(a.id) === articleId && a.source === p.source);
+    // Agar topilmasa, faqat ID bo'yicha qidirish
+    if (!article) {
+      article = allArticles.find((a: any) => Number(a.id) === articleId);
+    }
     return article ? { ...article, isPinned: true } : null;
   }).filter(Boolean);
+  
+  // Debug log
+  console.log('Pinned data:', { pinnedArticles, pinnedArticlesListCount: pinnedArticlesList.length });
   
   // Pinned bo'lmagan maqolalarni sana va ID bo'yicha tartiblash
   const nonPinnedArticles = allArticles.filter((a: any) => 
@@ -117,10 +125,20 @@ export default async function Home() {
 
   let featuredArticle = null;
   if (featured.articleId) {
+    // Source bo'yicha qidirish, agar topilmasa faqat ID bo'yicha qidirish
     featuredArticle = allArticles.find((a: any) => 
       Number(a.id) === Number(featured.articleId) && a.source === featured.source
     );
+    // Agar topilmasa, faqat ID bo'yicha qidirish
+    if (!featuredArticle) {
+      featuredArticle = allArticles.find((a: any) => 
+        Number(a.id) === Number(featured.articleId)
+      );
+    }
   }
+  
+  // Debug uchun console log
+  console.log('Featured data:', { featured, featuredArticle: featuredArticle?.title, allArticlesCount: allArticles.length });
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
