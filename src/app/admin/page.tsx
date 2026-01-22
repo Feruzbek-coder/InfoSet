@@ -182,7 +182,9 @@ export default function AdminPage() {
         body: JSON.stringify(articleData)
       })
 
-      if (response.ok) {
+      const result = await response.json()
+
+      if (response.ok && result.success) {
         if (activeTab === 'learning') {
           await loadLearningArticles()
         } else if (activeTab === 'projects') {
@@ -193,11 +195,13 @@ export default function AdminPage() {
         resetForm()
         alert(editingId ? 'Muvaffaqiyatli tahrirlandi!' : 'Muvaffaqiyatli qo\'shildi!')
       } else {
-        alert('Xatolik yuz berdi!')
+        const errorMsg = result.error || 'Xatolik yuz berdi!'
+        console.error('API error:', errorMsg)
+        alert(errorMsg)
       }
     } catch (error) {
       console.error('Saqlashda xato:', error)
-      alert('Xatolik yuz berdi!')
+      alert('Xatolik yuz berdi! Railway platformasida file system read-only. Iltimos, database ishlatish kerak.')
     }
   }
 
