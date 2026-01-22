@@ -1,0 +1,255 @@
+{
+  "questions": [
+    {
+      "question": "What is the correct Uzbek translation of the word 'vessel'?",
+    "options": ["Kema; Idish", "Yog‘och; taxta", "Burchak; yondashuv", "Uzatma; moslama"],
+    "correct_answer": 0
+  },
+  {
+    "question": "What is the correct Uzbek translation of the word 'witness'?",
+    "options": ["To‘siq; to'siq bo‘lmoq", "Guvoh; Guvoh bo‘lmoq", "Qatlam; qavatlamoq", "Kema korpusi; paluba"],
+    "correct_answer": 1
+  },
+  {
+    "question": "What is the correct Uzbek translation of the word 'maintain'?",
+    "options": ["Saqlamoq; davom ettirmoq", "Tanazzulga uchramoq; qulamoq", "Biroz yengil; shaffof", "Uzilish bilan; oraliq"],
+    "correct_answer": 0
+  },
+  {
+    "question": "What is the correct Uzbek translation of the word 'outdate'?",
+    "options": ["Harakat qilmoq; harakat", "Eskirmoq; muddatidan o‘tgan", "Moslama; qurilma", "Butunlay; yakuniy"],
+    "correct_answer": 1
+  },
+  {
+    "question": "What is the correct Uzbek translation of the word 'overladen'?",
+    "options": ["Ortib ketgan", "Ortiqcha yuklangan", "Qatlamli", "Tanazzulga uchragan"],
+    "correct_answer": 1
+  },
+  {
+    "question": "What is the correct Uzbek translation of the word 'discipline'?",
+    "options": ["Qirg‘oq; sohil", "Intizom; tartib", "Vaqti-vaqti bilan", "ketma-ket"],
+    "correct_answer": 1
+  },
+  {
+    "question": "What is the correct Uzbek translation of the word 'crew'?",
+    "options": ["Ekipaj; Jamoa", "Uzatma; moslama", "Burchak; yondashuv", "Yog‘och; taxta"],
+    "correct_answer": 0
+  },
+  {
+    "question": "What is the correct Uzbek translation of the word 'undisputed'?",
+    "options": ["Shubhasiz", "Biroz yengil", "Tanazzul", "Qatlamli"],
+    "correct_answer": 0
+  },
+  {
+    "question": "What is the correct Uzbek translation of the word 'attempt'?",
+    "options": ["Yuzaki qaramoq", "Harakat; urinib ko‘rmoq", "Tartib; tartiblamoq", "Yengil; oson"],
+    "correct_answer": 1
+  },
+  {
+    "question": "What is the correct Uzbek translation of the word 'angle'?",
+    "options": ["Qatlam", "Burchak", "Uzatma", "Idish"],
+    "correct_answer": 1
+  },
+  {
+    "question": "What is the correct Uzbek translation of the word 'hull'?",
+    "options": ["Kema korpusi", "Ekipaj a'zosi", "Anjomlar qutisi", "Yo'lovchi kabinasi"],
+    "correct_answer": 0
+  },
+  {
+    "question": "What is the correct Uzbek translation of the word 'erode'?",
+    "options": ["Yemirilmoq", "Davom ettirmoq", "Tartibga solmoq", "G‘arq bo‘lmoq"],
+    "correct_answer": 0
+  },
+  {
+    "question": "What is the correct Uzbek translation of the word 'marine'?",
+    "options": ["Dengizga oid", "Tog‘li", "Havo bilan bog‘liq", "Vaqti-vaqti bilan"],
+    "correct_answer": 0
+  },
+  {
+    "question": "What is the correct Uzbek translation of the word 'degradation'?",
+    "options": ["Qayta tiklash", "Buzilish; Tanazzul; cho'kish", "To‘siq; g‘ov", "Chuqurlik; kenglik"],
+    "correct_answer": 1
+  },
+  {
+    "question": "What is the correct Uzbek translation of the word 'sink'?",
+    "options": ["Baland ko‘tarilmoq", "Cho‘kmoq", "Yoyilmoq", "Tarqalmoq"],
+    "correct_answer": 1
+  },
+  {
+    "question": "What is the correct Uzbek translation of the word 'intact'?",
+    "options": ["Zararsiz", "Yoyilgan", "Uzilgan", "Eskirgan"],
+    "correct_answer": 0
+  },
+  {
+    "question": "What is the correct Uzbek translation of the word 'entire'?",
+    "options": ["Qisman", "Butunlay", "Kichik", "Yuqoriga qarab"],
+    "correct_answer": 1
+  },
+  {
+    "question": "What is the correct Uzbek translation of the word 'layer'?",
+    "options": ["Qatlam", "Idish", "Uzatmalar", "To‘siq"],
+    "correct_answer": 0
+  },
+  {
+    "question": "What is the correct Uzbek translation of the word 'obstruction'?",
+    "options": ["Qatlam", "To‘siq", "Burchak", "Qirg‘in"],
+    "correct_answer": 1
+  },
+  {
+    "question": "What is the correct Uzbek translation of the word 'sunken'?",
+    "options": ["Cho‘kkan", "Buzilgan", "Uzilgan", "Kengaygan"],
+    "correct_answer": 0
+  },
+  {
+    "question": "What is the correct Uzbek translation of the word 'nearby'?",
+    "options": ["Biroz yengil", "Yaqin", "Vaqti-vaqti bilan", "Butunlay"],
+    "correct_answer": 1
+  },
+  {
+    "question": "What is the correct Uzbek translation of the word 'gear'?",
+    "options": ["Uzatmalar", "Qatlam", "To‘siq", "Qurilma"],
+    "correct_answer": 0
+  },
+  {
+    "question": "What is the correct Uzbek translation of the word 'slightly'?",
+    "options": ["Buzilgan", "Biroz", "Qattiq", "Butunlay"],
+    "correct_answer": 1
+  },
+  {
+    "question": "What is the correct Uzbek translation of the word 'timber'?",
+    "options": ["Yog‘och", "Qatlam", "Ekipaj", "Kema korpusi"],
+    "correct_answer": 0
+  },
+  {
+    "question": "What is the correct Uzbek translation of the word 'intermittently'?",
+    "options": ["Vaqti-vaqti bilan", "Har doim", "Ortiqcha", "Teskari"],
+    "correct_answer": 0
+  },
+    {
+      "question": "What is the correct Uzbek translation of the word 'presence'?",
+      "options": ["Ishtirok; Mavjudlik", "Portlash; Yashirinlik", "Qiymat; Narx", "Kenglik; Hajm"],
+      "correct_answer": 0
+    },
+    {
+      "question": "What is the correct Uzbek translation of the word 'beneath'?",
+      "options": ["Teskari; tashqarida", "Ostida; tagida", "Qarag‘ay; yong‘oq", "Sohil; Kema guruhi"],
+      "correct_answer": 1
+    },
+    {
+      "question": "What is the correct Uzbek translation of the word 'release'?",
+      "options": ["Mustahkamlash; Kuchaytirish", "Tarqatmoq; Yashirmoq", "Chiqarish; Ozod qilish", "Teng ravishda; Bir xil"],
+      "correct_answer": 2
+    },
+    {
+      "question": "What is the correct Uzbek translation of the word 'reverse'?",
+      "options": ["Aks ettirmoq; surmoq", "Teskari; Orqaga aylantirmoq", "Portlash; Yashirinlik", "Yoyilmoq; Kengaymoq"],
+      "correct_answer": 1
+    },
+    {
+      "question": "What is the correct Uzbek translation of the word 'decade'?",
+      "options": ["Sohil", "O‘n yillik", "Harbiy kema", "Qiymat"],
+      "correct_answer": 1
+    },
+    {
+      "question": "What is the correct Uzbek translation of the word 'deposit'?",
+      "options": ["Qo‘yilma; garov", "Flot; kema guruhi", "Daraja; oshirish", "Tortishmoq; bahslashmoq"],
+      "correct_answer": 0
+    },
+    {
+      "question": "What is the correct Uzbek translation of the word 'disperse'?",
+      "options": ["Tarqatmoq; yoyilmoq", "Bahslashmoq; tortishmoq", "Qarag‘ay; yong‘oq", "Tenglik; narx"],
+      "correct_answer": 0
+    },
+    {
+      "question": "What is the correct Uzbek translation of the word 'transparent'?",
+      "options": ["Portlovchi", "Shaffof", "Teskari", "Flot"],
+      "correct_answer": 1
+    },
+    {
+      "question": "What is the correct Uzbek translation of the word 'argue'?",
+      "options": ["Bahslashmoq; Tortishmoq", "Qo‘yish; joylashtirmoq", "Portlash; fosh qilmoq", "Shu paytda; orada"],
+      "correct_answer": 0
+    },
+    {
+      "question": "What is the correct Uzbek translation of the word 'specifically'?",
+      "options": ["Ayniqsa; Aniq qilib", "Teskari; orqaga", "Yangilamoq; qayta ishlamoq", "Kenglik; Hajm"],
+      "correct_answer": 0
+    },
+    {
+      "question": "What is the correct Uzbek translation of the word 'replenish'?",
+      "options": ["Aks ettirmoq", "Yoyilmoq", "To‘ldirmoq; Yangilamoq", "Kema guruhi"],
+      "correct_answer": 2
+    },
+    {
+      "question": "What is the correct Uzbek translation of the word 'latitude'?",
+      "options": ["Kenglik (geografik)", "Hajm", "Mavjudlik", "Sohil"],
+      "correct_answer": 0
+    },
+    {
+      "question": "What is the correct Uzbek translation of the word 'reflect'?",
+      "options": ["O‘n yillik", "Aks ettirmoq; Ko‘rsatmoq", "Ozod qilmoq; chiqarish", "Mustahkamlash; kuchaytirish"],
+      "correct_answer": 1
+    },
+    {
+      "question": "What is the correct Uzbek translation of the word 'explosion'?",
+      "options": ["Qiymat", "Portlash", "Garov", "Tenglik"],
+      "correct_answer": 1
+    },
+    {
+      "question": "What is the correct Uzbek translation of the word 'reinforce'?",
+      "options": ["Mustahkamlash; Kuchaytirish", "Flotiya; harbiy qism", "O‘n yillik", "Tartib; tartibga solish"],
+      "correct_answer": 0
+    },
+    {
+      "question": "What is the correct Uzbek translation of the word 'meanwhile'?",
+      "options": ["Teskari; orqaga", "Shu paytda; Orada", "Portlash; Yashirinlik", "Jang"],
+      "correct_answer": 1
+    },
+    {
+      "question": "What is the correct Uzbek translation of the word 'evergreen'?",
+      "options": ["Doimo yashil", "Qarag‘ay", "Ayniqsa; aniq qilib", "Kenglik; yorqinlik"],
+      "correct_answer": 0
+    },
+    {
+      "question": "What is the correct Uzbek translation of the word 'pine'?",
+      "options": ["Majnuntol", "Qarag‘ay", "Tarqatmoq", "Flot"],
+      "correct_answer": 1
+    },
+    {
+      "question": "What is the correct Uzbek translation of the word 'equally'?",
+      "options": ["Yoyilmoq; kengaymoq", "Teng ravishda; Bir xil", "Ozod qilish; chiqarish", "Ko‘rsatmoq; tekshirmoq"],
+      "correct_answer": 1
+    },
+    {
+      "question": "What is the correct Uzbek translation of the word 'extents'?",
+      "options": ["Yorug'lik; mavjudlik", "Darajalar; hajmlar", "Mustahkamlash; kuchaytirish", "Aniq qilib; ko‘rsatmoq"],
+      "correct_answer": 1
+    },
+    {
+      "question": "What is the correct Uzbek translation of the word 'value'?",
+      "options": ["Qiymat; Ahamiyat", "Portlash", "Teskari; orqaga", "Tartib"],
+      "correct_answer": 0
+    },
+    {
+      "question": "What is the correct Uzbek translation of the word 'warship'?",
+      "options": ["Flot", "Harbiy kema", "Qarag‘ay", "Mustahkam"],
+      "correct_answer": 1
+    },
+    {
+      "question": "What is the correct Uzbek translation of the word 'fleet'?",
+      "options": ["Flot; Kema guruhi", "Qo‘yilma; topilma", "Tartib; intizom", "Teskari; aks-sado"],
+      "correct_answer": 0
+    },
+    {
+      "question": "What is the correct Uzbek translation of the word 'battle'?",
+      "options": ["Jang; Kurash", "Kenglik; hajm", "Qiymat; ahamiyat", "Harbiy kema"],
+      "correct_answer": 0
+    },
+    {
+      "question": "What is the correct Uzbek translation of the word 'coast'?",
+      "options": ["Sohil", "Doimo yashil", "Qarag‘ay", "Portlash"],
+      "correct_answer": 0
+    }
+    
+  ]
+}

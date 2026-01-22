@@ -1,0 +1,256 @@
+{
+  "questions": [
+    {
+      "question": "What is the meaning of 'to alleviate'?",
+      "options": ["Chidash", "Yengillashtirish", "Og'ritish", "O'zgartirish"],
+      "correct_answer": 1
+    },
+    {
+      "question": "Choose the correct meaning of 'meticulous':",
+      "options": ["Sabrli", "Tezkor", "Nozik va diqqatli", "Qattiqqo'l"],
+      "correct_answer": 2
+    },
+    {
+      "question": "What does the word 'superficial' mean?",
+      "options": ["Yuzaki", "Chuqur", "Tinch", "Do'stona"],
+      "correct_answer": 0
+    },
+    {
+      "question": "Choose the word that best fits the meaning of 'to evoke':",
+      "options": ["O'chirish", "Chaqirish", "Yaratish", "Uyga olib kelish"],
+      "correct_answer": 1
+    },
+    {
+      "question": "What is the translation of 'to thrive'?",
+      "options": ["Yashamoq", "Tinchlanmoq", "Rivojlanmoq", "Yolg'izlikni his qilmoq"],
+      "correct_answer": 2
+    },
+    {
+      "question": "What does the word 'ambiguous' mean?",
+      "options": ["Aniq", "Noaniq", "To'g'ri", "Xushchaqchaq"],
+      "correct_answer": 1
+    },
+    {
+      "question": "Choose the correct meaning of 'inquisitive':",
+      "options": ["Tezkor", "Qattiqqo'l", "Jiddiy", "Qiziquvchan"],
+      "correct_answer": 3
+    },
+    {
+      "question": "What does 'to undermine' mean?",
+      "options": ["Qo'llab-quvvatlash", "O'rganish", "Zaiflashtirish", "Yordam berish"],
+      "correct_answer": 2
+    },
+    {
+      "question": "Choose the correct translation of 'resilient':",
+      "options": ["Muammolarga bardoshli", "Tezkor bajaruvchi", "Kengaytirilgan qidiruv", "Amaliy yordam"],
+      "correct_answer": 0
+    },
+    {
+      "question": "What is the meaning of 'obscure'?",
+      "options": ["Yashirin", "Oson", "O'zgaruvchan", "Yoritilgan"],
+      "correct_answer": 0
+    },
+    {
+      "question": "What is the meaning of 'conservative'?",
+      "options": ["Hur fikrli", "Konservativ", "Mustaqil", "O‘zgaruvchan"],
+      "correct_answer": 1
+    },
+    {
+      "question": "Choose the correct meaning of 'concept':",
+      "options": ["Yondashuv", "Taklif", "Tushuncha", "Muammo"],
+      "correct_answer": 2
+    },
+    {
+      "question": "What does 'proposal' mean?",
+      "options": ["Yozuv", "Tashabbus", "Taklif", "Qaror"],
+      "correct_answer": 2
+    },
+    {
+      "question": "What is the meaning of 'reduce'?",
+      "options": ["Kamaytirish", "O‘zgartirish", "Yaxshilash", "Ko‘paytirish"],
+      "correct_answer": 0
+    },
+    {
+      "question": "Choose the meaning of 'implement':",
+      "options": ["Tugatmoq; yakunlamoq", "Amalga oshirish; joriy etish", "Rad etmoq; ta'qiqlamoq", "Yozmoq; ifodalamoq"],
+      "correct_answer": 1
+    },
+    {
+      "question": "What does 'supply' mean?",
+      "options": ["Yaratmoq; joriy etmoq", "To‘plamoq; yig'moq", "Ta’minlash; yetkazib berish", "Yo‘qotmoq; sarflamoq"],
+      "correct_answer": 2
+    },
+    {
+      "question": "What is the translation of 'sacrifice'?",
+      "options": ["Yordam; yordam bermoq", "Qurbonlik; qurbon qilish", "Sovg‘a; sovg'a qilmoq", "O‘g‘irlash; talonchilik qilish"],
+      "correct_answer": 1
+    },
+    {
+      "question": "What does 'despoil' mean?",
+      "options": ["Qurmoq; vayron qilmoq", "Talon-taroj qilish", "Tozalamoq", "Qo‘llab-quvvatlamoq"],
+      "correct_answer": 1
+    },
+    {
+      "question": "What is the meaning of 'rigours'?",
+      "options": ["Qattiq talablar; og‘ir shartlar", "Yengilliklar; imkoniyatlar", "O‘zgaruvchanlik; moslashuvchanlik", "Soddalik; oddiylik"],
+      "correct_answer": 0
+    },
+    {
+      "question": "What is the translation of 'droughts'?",
+      "options": ["Yomg‘ir", "Qurg‘oqchiliklar", "Qor yog‘ishi", "Shamol"],
+      "correct_answer": 1
+    },
+    {
+      "question": "What does 'rapidly' mean?",
+      "options": ["Sekin; sokin", "Tezda; shoshilinch", "Og‘ir; jiddiy", "Past; yengil"],
+      "correct_answer": 1
+    },
+    {
+      "question": "What is the meaning of 'severe'?",
+      "options": ["Qiziqarli; intizomli", "Kuchli; jiddiy", "Yengil; nozik", "Eski; qadimgi"],
+      "correct_answer": 1
+    },
+    {
+      "question": "What does 'valuable' mean?",
+      "options": ["Qimmatbaho", "Keraksiz", "Oson", "Arzon"],
+      "correct_answer": 0
+    },
+    {
+      "question": "What is the translation of 'artificial'?",
+      "options": ["Asl", "Tabiiy", "Sun’iy", "Toza"],
+      "correct_answer": 2
+    },
+    {
+      "question": "What does 'failure' mean?",
+      "options": ["Muvaffaqiyat", "Harakat", "Muvaffaqiyatsizlik", "Tashabbus"],
+      "correct_answer": 2
+    },
+    {
+      "question": "Choose the meaning of 'eliminate':",
+      "options": ["Tanlamoq", "Yo‘q qilish", "Saqlamoq", "Qayta ishlamoq"],
+      "correct_answer": 1
+    },
+    {
+      "question": "What is the meaning of 'incidence'?",
+      "options": ["Daromad", "Sodir bo‘lish holati", "To‘lov jarayoni", "Oraliq masofa"],
+      "correct_answer": 1
+    },
+    {
+      "question": "What does 'acquire' mean?",
+      "options": ["Yo‘qotmoq; o'chirmoq", "Qo‘lga kiritmoq; egallamoq", "O‘chirib yubormoq", "Qisqartirmoq"],
+      "correct_answer": 1
+    },
+    {
+      "question": "What is the translation of 'consume'?",
+      "options": ["Iste’mol qilmoq", "Sarflamaslik", "Yopib qo'ymoq", "Yo‘qotib qo‘ymoq"],
+      "correct_answer": 0
+    },
+    {
+      "question": "What does 'edible' mean?",
+      "options": ["Ichiladigan", "Yeb bo‘ladigan", "Qo‘llaniladigan", "Qimmatli"],
+      "correct_answer": 1
+    },
+    {
+      "question": "What is the meaning of 'drawback'?",
+      "options": ["Yutuq; g‘alaba", "Kamchilik; zararli tomon", "Reja; loyiha", "Yordam; ko‘mak"],
+      "correct_answer": 1
+    },
+    {
+      "question": "What does 'expose' mean?",
+      "options": ["Foydalanmoq; ko'rsatmoq", "Ochmoq; fosh qilmoq", "Berkitmoq; yashirmoq", "Aralashtirmoq; birlashtirmoq"],
+      "correct_answer": 1
+    },
+    {
+      "question": "Choose the correct meaning of 'cruel'",
+      "options": ["Pastda joylashgan", "Shafqatsiz", "Markaziy qism", "Chetdagi"],
+      "correct_answer": 1
+    },
+    {
+      "question": "What is the meaning of 'renewable'?",
+      "options": ["Tabiiy gaz", "Qayta tiklanadigan", "Yangilik qilingan", "Kengayadigan"],
+      "correct_answer": 1
+    },
+    {
+      "question": "What is the translation of 'aspiration'?",
+      "options": ["Qiziqish; intizom", "Intilish; orzu", "Qaror; belgilash", "Vaqtinchalik istak"],
+      "correct_answer": 1
+    },
+    {
+      "question": "What does 'likelihood' mean?",
+      "options": ["Imkoniyat", "Ziddiyat", "Ehtimollik", "Tashabbus"],
+      "correct_answer": 2
+    },
+    {
+      "question": "Choose the correct meaning of 'detrimental':",
+      "options": ["Muvozanatli", "Zararsiz", "Zarur", "Zararli"],
+      "correct_answer": 3
+    },
+    {
+      "question": "What is the meaning of 'regard'?",
+      "options": ["E’tibor bermaslik; e'tiborsizlik", "Nisbatan ko‘rmoq; hisoblash", "Qochmoq; berkitmoq", "Yashirish; tartibga solmoq"],
+      "correct_answer": 1
+    },
+    {
+      "question": "What is the translation of 'predict'?",
+      "options": ["Aniqlashtirmoq", "Bashorat qilmoq", "Anglamoq; tushunmoq", "Qabul qilmoq"],
+      "correct_answer": 1
+    },
+    {
+      "question": "What does 'rotate' mean?",
+      "options": ["Aylantirmoq", "Tushurmoq", "Ko‘paytirmoq", "Yopmoq"],
+      "correct_answer": 0
+    },
+    {
+      "question": "What is the meaning of 'sequence'?",
+      "options": ["Qiyinchilik", "Ketma-ketlik", "Qarama-qarshilik", "Ajralish"],
+      "correct_answer": 1
+    },
+    {
+      "question": "What does 'dismantle' mean?",
+      "options": ["Birlashtirmoq; tiklamoq", "Buzmoq; parchalariga ajratmoq", "Saqlamoq; himoya qilmoq", "O‘zgartirmoq; hisoblamoq"],
+      "correct_answer": 1
+    },
+    {
+      "question": "What is the translation of 'thereby'?",
+      "options": ["Shu bilan", "Undan tashqari", "Chunki", "Shuningdek"],
+      "correct_answer": 0
+    },
+    {
+      "question": "What does 'launch' mean?",
+      "options": ["Tugatmoq; yakunlamoq", "Ishga tushirish; boshlamoq", "Yopmoq; berkitmoq", "Cheklamoq; ta'qiqlamoq"],
+      "correct_answer": 1
+    },
+    {
+      "question": "What is the meaning of 'authority'?",
+      "options": ["Qiziqish; intizom", "Vakolat; hokimiyat", "E’lon; xabar", "Hisob; baho"],
+      "correct_answer": 1
+    },
+    {
+      "question": "Choose the correct meaning of 'submit':",
+      "options": ["Qo‘llab-quvvatlamoq; oshirmoq", "Topshirmoq; taslim bo‘lmoq", "Tashlash; yo‘qotmoq", "Tanqid qilmoq; cheklamoq"],
+      "correct_answer": 1
+    },
+    {
+      "question": "What is the meaning of 'steel'?",
+      "options": ["Yog‘och", "Temir", "Po‘lat", "Alyuminiy"],
+      "correct_answer": 2
+    },
+    {
+      "question": "What does 'propel' mean?",
+      "options": ["To‘xtatmoq; ta'qiqlamoq", "Itarmoq; surish", "Ko‘tarib chiqarmoq; oshirmoq", "Ko‘zdan kechirmoq; tekshirmoq"],
+      "correct_answer": 1
+    },
+    {
+      "question": "Choose the translation of 'spine':",
+      "options": ["Bilak", "Bel", "Orqa suyagi", "Tizza"],
+      "correct_answer": 2
+    },
+    {
+      "question": "What does 'assemble' mean?",
+      "options": ["Buzmoq; parchalariga ajratmoq", "Yig‘moq; montaj qilmoq", "Yo‘qotmoq; o'chirmoq", "Chizmoq; tiklamoq"],
+      "correct_answer": 1
+    }
+    
+  
+  ]
+}

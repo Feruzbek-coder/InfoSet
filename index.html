@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>InfoSet — Tez ko'rish</title>
+  <meta name="description" content="Loyiha uchun tezkor ko'rish sahifasi" />
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen bg-slate-50 text-slate-800">
+  <div class="max-w-3xl mx-auto px-4 py-12">
+    <header class="mb-8">
+      <h1 class="text-3xl font-bold">InfoSet</h1>
+      <p class="text-slate-600 mt-2">Loyihani osonroq ko'rish uchun oddiy index.html</p>
+    </header>
+
+    <section class="grid gap-6">
+      <div class="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
+        <h2 class="text-xl font-semibold">Next.js ilovasini ochish</h2>
+        <p class="text-slate-600 mt-2">Agar dev server ishga tushgan bo'lsa, quyidagi tugma orqali saytni ochishingiz mumkin.</p>
+        <div class="mt-4 flex items-center gap-3">
+          <a href="http://localhost:3000" class="inline-flex items-center justify-center rounded-lg bg-slate-900 px-4 py-2 text-white hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-slate-400">
+            http://localhost:3000
+          </a>
+          <span id="status" class="text-sm text-slate-500">Tekshirilmoqda...</span>
+        </div>
+        <p class="text-xs text-slate-500 mt-3">Dev serverni ishga tushirish: <code>npm run dev</code></p>
+      </div>
+
+      <div class="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
+        <h2 class="text-lg font-semibold">Qisqa ma'lumot</h2>
+        <ul class="list-disc pl-5 mt-2 space-y-1 text-slate-700">
+          <li>Bu sahifa Next.js-dan mustaqil ishlaydi (faylni brauzerda to'g'ridan-to'g'ri ochish mumkin).</li>
+          <li>Agar dev server o'chirilgan bo'lsa, yuqoridagi havola ishlamasligi mumkin.</li>
+        </ul>
+      </div>
+    </section>
+
+    <footer class="mt-12 text-xs text-slate-500">
+      © 2025
+    </footer>
+  </div>
+
+  <script>
+    (function checkServer() {
+      var statusEl = document.getElementById('status');
+      var controller = new AbortController();
+      var timeout = setTimeout(function() { controller.abort(); }, 2500);
+      fetch('http://localhost:3000/api/healthz', { signal: controller.signal })
+        .then(function() {
+          clearTimeout(timeout);
+          statusEl.textContent = 'Server ishga tushgan ko\'rinadi.';
+          statusEl.className = 'text-sm text-emerald-600';
+        })
+        .catch(function() {
+          clearTimeout(timeout);
+          // Agar maxsus health endpoint bo'lmasa ham, asosiy sahifani sinab ko'ramiz
+          var c2 = new AbortController();
+          var t2 = setTimeout(function(){ c2.abort(); }, 2500);
+          fetch('http://localhost:3000', { mode: 'no-cors', signal: c2.signal })
+            .then(function(){
+              clearTimeout(t2);
+              statusEl.textContent = 'Ehtimol server ishlayapti (no-cors).';
+              statusEl.className = 'text-sm text-emerald-600';
+            })
+            .catch(function(){
+              clearTimeout(t2);
+              statusEl.textContent = 'Server topilmadi. Avval "npm run dev" buyrug\'ini ishga tushiring.';
+              statusEl.className = 'text-sm text-rose-600';
+            });
+        });
+    })();
+  </script>
+</body>
+</html>

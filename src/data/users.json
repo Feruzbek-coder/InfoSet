@@ -1,0 +1,35 @@
+[
+  {
+    "id": 1,
+    "username": "demo",
+    "password": "demo123",
+    "name": "Demo Foydalanuvchi",
+    "isPremium": false,
+    "registeredDate": "2026-01-04"
+  },
+  {
+    "id": 2,
+    "username": "premium",
+    "password": "premium123",
+    "name": "Premium Foydalanuvchi",
+    "isPremium": true,
+    "registeredDate": "2026-01-04"
+  },
+  {
+    "id": 3,
+    "username": "Feruz1991",
+    "password": "Feruz123",
+    "name": "Feruz",
+    "isPremium": true,
+    "registeredDate": "2026-01-04"
+  },
+  {
+    "id": 4,
+    "username": "Feruzbek2201",
+    "password": "Admin123",
+    "name": "Feruzbek",
+    "isPremium": true,
+    "isAdmin": true,
+    "registeredDate": "2026-01-04"
+  }
+]
