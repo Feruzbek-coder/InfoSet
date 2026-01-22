@@ -1,36 +1,88 @@
 import HomeHeader from './components/HomeHeader'
 import InfoBar from './components/InfoBar'
 import Footer from './components/Footer'
+import pool from '@/lib/db'
 import { promises as fs } from 'fs'
 import path from 'path'
 
-export default async function Home() {
-  // JSON fayllarni to'g'ridan-to'g'ri o'qish
-  const dataDir = path.join(process.cwd(), 'src', 'data');
-  
-  // Maqolalar
-  const articlesData = await fs.readFile(path.join(dataDir, 'articles.json'), 'utf-8');
-  const articles = JSON.parse(articlesData);
-  
-  // Dasturlash maqolalari
-  const programmingData = await fs.readFile(path.join(dataDir, 'programming-articles.json'), 'utf-8');
-  const programmingArticles = JSON.parse(programmingData);
-  
-  // O'qituvchilar maqolalari
-  const teachersData = await fs.readFile(path.join(dataDir, 'teachers-articles.json'), 'utf-8');
-  const teachersArticles = JSON.parse(teachersData);
-  
-  // Featured maqolani olish
-  const featuredData = await fs.readFile(path.join(dataDir, 'featured.json'), 'utf-8');
-  const featured = JSON.parse(featuredData);
-  
-  // Pinned maqolalarni olish
-  let pinnedArticles: any[] = [];
+// Database mavjudligini tekshirish
+async function isDatabaseAvailable() {
+  if (!process.env.DATABASE_URL) return false
   try {
-    const pinnedData = await fs.readFile(path.join(dataDir, 'pinned.json'), 'utf-8');
-    pinnedArticles = JSON.parse(pinnedData);
+    await pool.query('SELECT 1')
+    return true
   } catch {
-    pinnedArticles = [];
+    return false
+  }
+}
+
+// API'dan ma'lumot olish
+async function fetchFromAPI(endpoint: string) {
+  try {
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || process.env.VERCEL_URL || 'http://localhost:3000'
+    const res = await fetch(`${baseUrl}${endpoint}`, { cache: 'no-store' })
+    return await res.json()
+  } catch {
+    return []
+  }
+}
+
+export default async function Home() {
+  const useDb = await isDatabaseAvailable()
+  
+  let articles: any[] = []
+  let programmingArticles: any[] = []
+  let teachersArticles: any[] = []
+  let featured: any = { articleId: null, source: 'maqolalar' }
+  let pinnedArticles: any[] = []
+  
+  if (useDb) {
+    // PostgreSQL'dan o'qish
+    try {
+      const articlesResult = await pool.query('SELECT * FROM articles ORDER BY id DESC')
+      articles = articlesResult.rows
+      
+      // Featured
+      const featuredResult = await pool.query('SELECT article_id, source FROM featured LIMIT 1')
+      if (featuredResult.rows.length > 0) {
+        featured = { articleId: featuredResult.rows[0].article_id, source: featuredResult.rows[0].source }
+      }
+      
+      // Pinned
+      const pinnedResult = await pool.query('SELECT article_id as "articleId", source FROM pinned ORDER BY pinned_at DESC')
+      pinnedArticles = pinnedResult.rows
+    } catch (error) {
+      console.error('Database error:', error)
+    }
+    
+    // Programming va Teachers hali JSON'dan (keyinroq database'ga o'tkazamiz)
+    try {
+      const dataDir = path.join(process.cwd(), 'src', 'data')
+      const programmingData = await fs.readFile(path.join(dataDir, 'programming-articles.json'), 'utf-8')
+      programmingArticles = JSON.parse(programmingData)
+      const teachersData = await fs.readFile(path.join(dataDir, 'teachers-articles.json'), 'utf-8')
+      teachersArticles = JSON.parse(teachersData)
+    } catch {}
+  } else {
+    // JSON fayllardan o'qish (local development)
+    const dataDir = path.join(process.cwd(), 'src', 'data')
+    
+    try {
+      const articlesData = await fs.readFile(path.join(dataDir, 'articles.json'), 'utf-8')
+      articles = JSON.parse(articlesData)
+      
+      const programmingData = await fs.readFile(path.join(dataDir, 'programming-articles.json'), 'utf-8')
+      programmingArticles = JSON.parse(programmingData)
+      
+      const teachersData = await fs.readFile(path.join(dataDir, 'teachers-articles.json'), 'utf-8')
+      teachersArticles = JSON.parse(teachersData)
+      
+      const featuredData = await fs.readFile(path.join(dataDir, 'featured.json'), 'utf-8')
+      featured = JSON.parse(featuredData)
+      
+      const pinnedData = await fs.readFile(path.join(dataDir, 'pinned.json'), 'utf-8')
+      pinnedArticles = JSON.parse(pinnedData)
+    } catch {}
   }
   
   // Barcha maqolalarni birlashtirish va bo'lim qo'shish
