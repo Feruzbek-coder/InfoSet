@@ -94,16 +94,10 @@ export default async function Home() {
     ...teachersArticles.map((a: any) => ({ ...a, source: 'oqituvchilar', sourceUrl: '/oqituvchilar' }))
   ];
   
-  // Debug log
-  console.log('All articles count:', allArticles.length)
-  console.log('Pinned articles:', pinnedArticles)
-  console.log('Featured:', featured)
-  
   // Pinned maqolalarni topish (id ni number ga o'girish)
   const pinnedArticlesList = pinnedArticles.map((p: any) => {
     const articleId = Number(p.articleId)
     const article = allArticles.find((a: any) => Number(a.id) === articleId && a.source === p.source);
-    console.log('Looking for pinned:', articleId, p.source, 'Found:', !!article)
     return article ? { ...article, isPinned: true } : null;
   }).filter(Boolean);
   
@@ -126,7 +120,6 @@ export default async function Home() {
     featuredArticle = allArticles.find((a: any) => 
       Number(a.id) === Number(featured.articleId) && a.source === featured.source
     );
-    console.log('Looking for featured:', featured.articleId, featured.source, 'Found:', !!featuredArticle)
   }
 
   return (

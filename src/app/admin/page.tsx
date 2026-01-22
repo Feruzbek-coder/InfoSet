@@ -193,10 +193,14 @@ export default function AdminPage() {
   const handleSubmit = async (e: any) => {
     e.preventDefault()
     
-    const articleData = {
+    const articleData: any = {
       ...formData,
-      date: new Date().toISOString().split('T')[0],
-      id: editingId || Date.now()
+      date: new Date().toISOString().split('T')[0]
+    }
+    
+    // Faqat tahrirlashda id qo'shish
+    if (editingId) {
+      articleData.id = editingId
     }
 
     try {
