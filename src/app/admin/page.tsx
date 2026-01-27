@@ -30,7 +30,10 @@ export default function AdminPage() {
     content: '',
     category: 'Tezlashtirish',
     author: 'Admin',
-    image: ''
+    image: '',
+    codeHtml: '',
+    codeCss: '',
+    codeJs: ''
   })
 
   useEffect(() => {
@@ -249,7 +252,10 @@ export default function AdminPage() {
       content: article.content,
       category: article.category,
       author: article.author,
-      image: article.image
+      image: article.image,
+      codeHtml: (article as any).codeHtml || '',
+      codeCss: (article as any).codeCss || '',
+      codeJs: (article as any).codeJs || ''
     })
     setEditingId(article.id)
     setIsAddingNew(true)
@@ -303,7 +309,10 @@ export default function AdminPage() {
       content: '',
       category: 'Tezlashtirish',
       author: 'Admin',
-      image: ''
+      image: '',
+      codeHtml: '',
+      codeCss: '',
+      codeJs: ''
     })
     setIsAddingNew(false)
     setEditingId(null)
@@ -822,12 +831,206 @@ export default function AdminPage() {
         </>)}
 
         {/* Projects Tab Content */}
-        {activeTab === 'projects' && (
-          <div className="text-center py-12 bg-white rounded-lg shadow-sm">
-            <p className="text-gray-700 text-base font-medium">"Kichik loyihalarim" boshqaruvi hali ishlanmoqda...</p>
-            <p className="text-gray-500 text-sm mt-2">Tez orada loyihalarni boshqarish imkoniyati qo'shiladi</p>
+        {activeTab === 'projects' && (<>
+        {isAddingNew && (
+          <div className="bg-white rounded-lg shadow-sm p-6 mb-8">
+            <h2 className="text-xl font-semibold mb-4 flex items-center gap-2">
+              <svg className="w-6 h-6 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+              </svg>
+              {editingId ? 'Loyihani Tahrirlash' : 'Yangi Loyiha Qo\'shish'}
+            </h2>
+            <form onSubmit={handleSubmit}>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Loyiha nomi
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-pink-500 text-gray-900"
+                    value={formData.title}
+                    onChange={(e) => setFormData({...formData, title: e.target.value})}
+                    placeholder="Masalan: Kalkulyator, To-Do List..."
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Kategoriya
+                  </label>
+                  <select
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-pink-500 text-gray-900"
+                    value={formData.category}
+                    onChange={(e) => setFormData({...formData, category: e.target.value})}
+                  >
+                    <option value="HTML/CSS">HTML/CSS</option>
+                    <option value="JavaScript">JavaScript</option>
+                    <option value="Interaktiv">Interaktiv</option>
+                    <option value="O'yin">O'yin</option>
+                    <option value="Amaliy">Amaliy</option>
+                  </select>
+                </div>
+              </div>
+              
+              <div className="mb-4">
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Loyiha tavsifi
+                </label>
+                <textarea
+                  rows={4}
+                  required
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-pink-500 text-gray-900"
+                  value={formData.content}
+                  onChange={(e) => setFormData({...formData, content: e.target.value})}
+                  placeholder="Loyiha haqida qisqacha ma'lumot..."
+                ></textarea>
+              </div>
+
+              {/* Kod yozish bo'limi */}
+              <div className="bg-gray-50 rounded-lg p-4 mb-4 border border-gray-200">
+                <h3 className="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-2">
+                  <svg className="w-5 h-5 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+                  </svg>
+                  Loyiha Kodi
+                </h3>
+
+                {/* HTML Kod */}
+                <div className="mb-4">
+                  <label className="block text-sm font-medium text-gray-700 mb-2 flex items-center gap-2">
+                    <span className="px-2 py-1 bg-orange-100 text-orange-700 rounded text-xs font-bold">HTML</span>
+                    HTML kodi
+                  </label>
+                  <textarea
+                    rows={8}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 font-mono text-sm text-gray-900 bg-white"
+                    value={formData.codeHtml}
+                    onChange={(e) => setFormData({...formData, codeHtml: e.target.value})}
+                    placeholder="<div class='container'>&#10;  <h1>Salom Dunyo</h1>&#10;  <button id='btn'>Bosing</button>&#10;</div>"
+                  ></textarea>
+                </div>
+
+                {/* CSS Kod */}
+                <div className="mb-4">
+                  <label className="block text-sm font-medium text-gray-700 mb-2 flex items-center gap-2">
+                    <span className="px-2 py-1 bg-blue-100 text-blue-700 rounded text-xs font-bold">CSS</span>
+                    CSS kodi
+                  </label>
+                  <textarea
+                    rows={8}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 font-mono text-sm text-gray-900 bg-white"
+                    value={formData.codeCss}
+                    onChange={(e) => setFormData({...formData, codeCss: e.target.value})}
+                    placeholder=".container {&#10;  max-width: 600px;&#10;  margin: 0 auto;&#10;  padding: 20px;&#10;}"
+                  ></textarea>
+                </div>
+
+                {/* JavaScript Kod */}
+                <div className="mb-4">
+                  <label className="block text-sm font-medium text-gray-700 mb-2 flex items-center gap-2">
+                    <span className="px-2 py-1 bg-yellow-100 text-yellow-700 rounded text-xs font-bold">JS</span>
+                    JavaScript kodi
+                  </label>
+                  <textarea
+                    rows={8}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-yellow-500 font-mono text-sm text-gray-900 bg-white"
+                    value={formData.codeJs}
+                    onChange={(e) => setFormData({...formData, codeJs: e.target.value})}
+                    placeholder="document.getElementById('btn').onclick = function() {&#10;  alert('Tugma bosildi!');&#10;}"
+                  ></textarea>
+                </div>
+
+                {/* Preview */}
+                {(formData.codeHtml || formData.codeCss || formData.codeJs) && (
+                  <div className="mt-4 border-t pt-4">
+                    <h4 className="text-sm font-medium text-gray-700 mb-2">Kod natijasi (preview):</h4>
+                    <div className="bg-gray-900 rounded-lg overflow-hidden">
+                      <iframe
+                        srcDoc={`<!DOCTYPE html><html><head><style>*{margin:0;padding:0;box-sizing:border-box;}body{font-family:Arial,sans-serif;padding:20px;}${formData.codeCss}</style></head><body>${formData.codeHtml}<script>try{${formData.codeJs}}catch(e){console.error(e);}</script></body></html>`}
+                        className="w-full h-64 bg-white"
+                        title="Preview"
+                        sandbox="allow-scripts"
+                      />
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              <div className="flex justify-end gap-2">
+                <button
+                  type="button"
+                  onClick={resetForm}
+                  className="px-4 py-2 text-gray-700 bg-gray-200 rounded-md hover:bg-gray-300"
+                >
+                  Bekor qilish
+                </button>
+                <button
+                  type="submit"
+                  className="px-4 py-2 bg-pink-600 text-white rounded-md hover:bg-pink-700"
+                >
+                  {editingId ? 'Yangilash' : 'Qo\'shish'}
+                </button>
+              </div>
+            </form>
           </div>
         )}
+
+        {projects.length === 0 && !isAddingNew ? (
+          <div className="text-center py-12 bg-white rounded-lg shadow-sm">
+            <svg className="w-16 h-16 mx-auto mb-4 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"></path>
+            </svg>
+            <p className="text-gray-700 text-base font-medium">Hech qanday loyiha mavjud emas.</p>
+            <p className="text-gray-500 text-sm mt-2">Yuqoridagi "Yangi Loyiha Qo'shish" tugmasini bosing</p>
+          </div>
+        ) : (
+          <div className="bg-white rounded-lg shadow-sm">
+            <div className="px-6 py-4 border-b">
+              <h3 className="text-lg font-semibold">Mavjud Loyihalar</h3>
+            </div>
+            <div className="divide-y">
+              {projects.map((project: any) => (
+                <div key={project.id} className="p-6 flex justify-between items-start hover:bg-gray-50 transition">
+                  <div className="flex-1">
+                    <div className="flex items-center gap-2 mb-2">
+                      <h4 className="font-bold text-xl text-gray-900">{project.title}</h4>
+                      <span className="bg-pink-100 text-pink-800 text-sm font-semibold px-3 py-1 rounded-full">
+                        {project.category}
+                      </span>
+                      {project.codeHtml && (
+                        <span className="bg-green-100 text-green-700 text-xs font-semibold px-2 py-1 rounded-full">
+                          ✓ Kod mavjud
+                        </span>
+                      )}
+                    </div>
+                    <p className="text-gray-800 text-base mb-3 leading-relaxed">
+                      {project.content.substring(0, 150)}...
+                    </p>
+                    <p className="text-base text-gray-700 font-medium">
+                      {project.date} | {project.author}
+                    </p>
+                  </div>
+                  <div className="flex gap-3 ml-4">
+                    <button
+                      onClick={() => handleEdit(project)}
+                      className="text-pink-600 hover:text-pink-800 text-base font-semibold hover:underline"
+                    >
+                      Tahrirlash
+                    </button>
+                    <button
+                      onClick={() => handleDelete(project.id)}
+                      className="text-red-600 hover:text-red-800 text-base font-semibold hover:underline"
+                    >
+                      O'chirish
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+        </>)}
       </main>
     </div>
   )

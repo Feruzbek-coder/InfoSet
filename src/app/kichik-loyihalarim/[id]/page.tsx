@@ -1,10 +1,20 @@
 import Link from 'next/link'
+import fs from 'fs'
+import path from 'path'
+import CodePreview from './CodePreview'
+
+function getProjects() {
+  try {
+    const filePath = path.join(process.cwd(), 'src', 'data', 'mini-projects.json')
+    const data = fs.readFileSync(filePath, 'utf8')
+    return JSON.parse(data)
+  } catch (error) {
+    return []
+  }
+}
 
 export default async function ProjectDetailPage({ params }: { params: { id: string } }) {
-  const res = await fetch(`http://localhost:3000/api/mini-projects?t=${Date.now()}`, { 
-    cache: 'no-store'
-  })
-  const projects = await res.json()
+  const projects = getProjects()
   const project = projects.find((p: any) => p.id === parseInt(params.id))
 
   if (!project) {
@@ -69,6 +79,23 @@ export default async function ProjectDetailPage({ params }: { params: { id: stri
               {project.content}
             </div>
           </div>
+
+          {/* Kod ko'rish va ishga tushirish qismi */}
+          {project.codeHtml && (
+            <div className="mt-10">
+              <h2 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                <svg className="w-6 h-6 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+                </svg>
+                Loyiha Kodi
+              </h2>
+              <CodePreview 
+                htmlCode={project.codeHtml || ''} 
+                cssCode={project.codeCss || ''} 
+                jsCode={project.codeJs || ''} 
+              />
+            </div>
+          )}
 
           <div className="mt-12 pt-8 border-t border-gray-200">
             <p className="text-gray-600 mb-4">Muallif: <span className="font-semibold text-gray-900">{project.author}</span></p>

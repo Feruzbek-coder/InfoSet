@@ -1,10 +1,19 @@
 import Link from 'next/link'
+import fs from 'fs'
+import path from 'path'
+
+function getProjects() {
+  try {
+    const filePath = path.join(process.cwd(), 'src', 'data', 'mini-projects.json')
+    const data = fs.readFileSync(filePath, 'utf8')
+    return JSON.parse(data)
+  } catch (error) {
+    return []
+  }
+}
 
 export default async function MiniProjectsPage() {
-  const res = await fetch(`http://localhost:3000/api/mini-projects?t=${Date.now()}`, { 
-    cache: 'no-store'
-  })
-  const projects = await res.json()
+  const projects = getProjects()
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-pink-50 via-rose-50 to-purple-50">
