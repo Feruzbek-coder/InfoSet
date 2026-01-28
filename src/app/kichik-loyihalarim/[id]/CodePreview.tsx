@@ -9,8 +9,39 @@ interface CodePreviewProps {
 }
 
 export default function CodePreview({ htmlCode, cssCode, jsCode }: CodePreviewProps) {
-  const [activeTab, setActiveTab] = useState<'html' | 'css' | 'js' | 'preview'>('preview')
+  const [activeCodeTab, setActiveCodeTab] = useState<'html' | 'css' | 'js'>('html')
   const [isFullscreen, setIsFullscreen] = useState(false)
+
+  // Mobile uchun responsive CSS qo'shamiz
+  const responsiveCss = `
+    @media (max-width: 500px) {
+      .game-board {
+        grid-template-columns: repeat(4, 60px) !important;
+        grid-gap: 8px !important;
+      }
+      .card {
+        width: 60px !important;
+        height: 60px !important;
+        font-size: 30px !important;
+      }
+      .card-back, .card-front {
+        font-size: 24px !important;
+      }
+      .game-container {
+        padding: 15px !important;
+      }
+      .info {
+        font-size: 20px !important;
+      }
+      .stats {
+        font-size: 16px !important;
+      }
+      .reset-btn {
+        padding: 10px 20px !important;
+        font-size: 14px !important;
+      }
+    }
+  `
 
   const generatePreviewHtml = () => {
     return `
@@ -23,6 +54,7 @@ export default function CodePreview({ htmlCode, cssCode, jsCode }: CodePreviewPr
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
     ${cssCode}
+    ${responsiveCss}
   </style>
 </head>
 <body>
@@ -43,35 +75,33 @@ export default function CodePreview({ htmlCode, cssCode, jsCode }: CodePreviewPr
     alert(`${type} kodi nusxalandi!`)
   }
 
-  const tabs = [
-    { id: 'preview', label: 'Natija', icon: '▶️' },
-    { id: 'html', label: 'HTML', icon: '🌐' },
-    { id: 'css', label: 'CSS', icon: '🎨' },
-    { id: 'js', label: 'JavaScript', icon: '⚡' },
+  const codeTabs = [
+    { id: 'html', label: 'HTML', icon: '🌐', color: 'text-green-400' },
+    { id: 'css', label: 'CSS', icon: '🎨', color: 'text-blue-400' },
+    { id: 'js', label: 'JS', icon: '⚡', color: 'text-yellow-400' },
   ]
 
+  const getActiveCode = () => {
+    switch(activeCodeTab) {
+      case 'html': return htmlCode || 'HTML kod mavjud emas'
+      case 'css': return cssCode || 'CSS kod mavjud emas'
+      case 'js': return jsCode || 'JavaScript kod mavjud emas'
+    }
+  }
+
+  const getActiveColor = () => {
+    return codeTabs.find(t => t.id === activeCodeTab)?.color || 'text-white'
+  }
+
   return (
-    <div className={`bg-gray-900 rounded-2xl overflow-hidden shadow-2xl ${isFullscreen ? 'fixed inset-4 z-50' : ''}`}>
-      {/* Toolbar */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between bg-gray-800 px-3 sm:px-4 py-3 border-b border-gray-700 gap-3">
-        <div className="flex gap-1 sm:gap-2 overflow-x-auto">
-          {tabs.map(tab => (
-            <button
-              key={tab.id}
-              onClick={() => setActiveTab(tab.id as any)}
-              className={`px-3 sm:px-4 py-2 rounded-lg font-medium text-xs sm:text-sm transition flex items-center gap-1 sm:gap-2 whitespace-nowrap ${
-                activeTab === tab.id 
-                  ? 'bg-pink-600 text-white' 
-                  : 'text-gray-400 hover:text-white hover:bg-gray-700'
-              }`}
-            >
-              <span className="text-sm sm:text-base">{tab.icon}</span>
-              <span className="hidden sm:inline">{tab.label}</span>
-              <span className="sm:hidden">{tab.id.toUpperCase()}</span>
-            </button>
-          ))}
-        </div>
-        <div className="flex items-center gap-2">
+    <div className="space-y-6">
+      {/* NATIJA QISMI - O'YIN */}
+      <div className="bg-gray-900 rounded-2xl overflow-hidden shadow-2xl">
+        <div className="flex items-center justify-between bg-gray-800 px-4 py-3 border-b border-gray-700">
+          <div className="flex items-center gap-2">
+            <span className="text-lg">▶️</span>
+            <span className="text-white font-semibold">Natija</span>
+          </div>
           <button
             onClick={() => setIsFullscreen(!isFullscreen)}
             className="p-2 text-gray-400 hover:text-white hover:bg-gray-700 rounded-lg transition"
@@ -88,66 +118,61 @@ export default function CodePreview({ htmlCode, cssCode, jsCode }: CodePreviewPr
             )}
           </button>
         </div>
-      </div>
-
-      {/* Content */}
-      <div className={`${isFullscreen ? 'h-[calc(100%-80px)] sm:h-[calc(100%-60px)]' : 'h-[500px] sm:h-96'}`}>
-        {activeTab === 'preview' && (
+        <div className={isFullscreen ? 'fixed inset-4 z-50 bg-gray-900 rounded-2xl overflow-hidden' : ''}>
+          {isFullscreen && (
+            <div className="flex items-center justify-between bg-gray-800 px-4 py-3 border-b border-gray-700">
+              <span className="text-white font-semibold">▶️ Natija</span>
+              <button
+                onClick={() => setIsFullscreen(false)}
+                className="p-2 text-gray-400 hover:text-white hover:bg-gray-700 rounded-lg transition"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+              </button>
+            </div>
+          )}
           <iframe
             srcDoc={generatePreviewHtml()}
-            className="w-full h-full bg-white"
+            className={`w-full bg-white ${isFullscreen ? 'h-[calc(100%-60px)]' : 'h-[400px] sm:h-[450px]'}`}
             title="Kod natijasi"
             sandbox="allow-scripts allow-modals"
           />
-        )}
+        </div>
+      </div>
 
-        {activeTab === 'html' && (
-          <div className="h-full flex flex-col">
-            <div className="flex justify-end p-2 bg-gray-800">
+      {/* KODLAR QISMI - PASTDA ALOHIDA */}
+      <div className="bg-gray-900 rounded-2xl overflow-hidden shadow-2xl">
+        <div className="flex items-center justify-between bg-gray-800 px-4 py-3 border-b border-gray-700">
+          <div className="flex gap-2">
+            {codeTabs.map(tab => (
               <button
-                onClick={() => copyCode(htmlCode, 'HTML')}
-                className="px-3 py-1 text-sm bg-pink-600 text-white rounded hover:bg-pink-700 transition"
+                key={tab.id}
+                onClick={() => setActiveCodeTab(tab.id as any)}
+                className={`px-4 py-2 rounded-lg font-medium text-sm transition flex items-center gap-2 ${
+                  activeCodeTab === tab.id 
+                    ? 'bg-pink-600 text-white' 
+                    : 'text-gray-400 hover:text-white hover:bg-gray-700'
+                }`}
               >
-                📋 Nusxalash
+                <span>{tab.icon}</span>
+                <span>{tab.label}</span>
               </button>
-            </div>
-            <pre className="flex-1 p-4 overflow-auto text-sm">
-              <code className="text-green-400">{htmlCode || 'HTML kod mavjud emas'}</code>
-            </pre>
+            ))}
           </div>
-        )}
-
-        {activeTab === 'css' && (
-          <div className="h-full flex flex-col">
-            <div className="flex justify-end p-2 bg-gray-800">
-              <button
-                onClick={() => copyCode(cssCode, 'CSS')}
-                className="px-3 py-1 text-sm bg-pink-600 text-white rounded hover:bg-pink-700 transition"
-              >
-                📋 Nusxalash
-              </button>
-            </div>
-            <pre className="flex-1 p-4 overflow-auto text-sm">
-              <code className="text-blue-400">{cssCode || 'CSS kod mavjud emas'}</code>
-            </pre>
-          </div>
-        )}
-
-        {activeTab === 'js' && (
-          <div className="h-full flex flex-col">
-            <div className="flex justify-end p-2 bg-gray-800">
-              <button
-                onClick={() => copyCode(jsCode, 'JavaScript')}
-                className="px-3 py-1 text-sm bg-pink-600 text-white rounded hover:bg-pink-700 transition"
-              >
-                📋 Nusxalash
-              </button>
-            </div>
-            <pre className="flex-1 p-4 overflow-auto text-sm">
-              <code className="text-yellow-400">{jsCode || 'JavaScript kod mavjud emas'}</code>
-            </pre>
-          </div>
-        )}
+          <button
+            onClick={() => copyCode(getActiveCode(), activeCodeTab.toUpperCase())}
+            className="px-3 py-2 text-sm bg-pink-600 text-white rounded-lg hover:bg-pink-700 transition flex items-center gap-1"
+          >
+            <span>📋</span>
+            <span className="hidden sm:inline">Nusxalash</span>
+          </button>
+        </div>
+        <div className="h-[300px] sm:h-[350px] overflow-auto">
+          <pre className="p-4 text-sm leading-relaxed">
+            <code className={getActiveColor()}>{getActiveCode()}</code>
+          </pre>
+        </div>
       </div>
     </div>
   )
