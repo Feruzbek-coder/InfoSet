@@ -53,20 +53,21 @@ export default function CodePreview({ htmlCode, cssCode, jsCode }: CodePreviewPr
   return (
     <div className={`bg-gray-900 rounded-2xl overflow-hidden shadow-2xl ${isFullscreen ? 'fixed inset-4 z-50' : ''}`}>
       {/* Toolbar */}
-      <div className="flex items-center justify-between bg-gray-800 px-4 py-3 border-b border-gray-700">
-        <div className="flex gap-2">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between bg-gray-800 px-3 sm:px-4 py-3 border-b border-gray-700 gap-3">
+        <div className="flex gap-1 sm:gap-2 overflow-x-auto">
           {tabs.map(tab => (
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id as any)}
-              className={`px-4 py-2 rounded-lg font-medium text-sm transition flex items-center gap-2 ${
+              className={`px-3 sm:px-4 py-2 rounded-lg font-medium text-xs sm:text-sm transition flex items-center gap-1 sm:gap-2 whitespace-nowrap ${
                 activeTab === tab.id 
                   ? 'bg-pink-600 text-white' 
                   : 'text-gray-400 hover:text-white hover:bg-gray-700'
               }`}
             >
-              <span>{tab.icon}</span>
-              {tab.label}
+              <span className="text-sm sm:text-base">{tab.icon}</span>
+              <span className="hidden sm:inline">{tab.label}</span>
+              <span className="sm:hidden">{tab.id.toUpperCase()}</span>
             </button>
           ))}
         </div>
@@ -90,7 +91,7 @@ export default function CodePreview({ htmlCode, cssCode, jsCode }: CodePreviewPr
       </div>
 
       {/* Content */}
-      <div className={`${isFullscreen ? 'h-[calc(100%-60px)]' : 'h-96'}`}>
+      <div className={`${isFullscreen ? 'h-[calc(100%-80px)] sm:h-[calc(100%-60px)]' : 'h-[500px] sm:h-96'}`}>
         {activeTab === 'preview' && (
           <iframe
             srcDoc={generatePreviewHtml()}
